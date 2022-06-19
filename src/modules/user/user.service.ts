@@ -52,7 +52,7 @@ export class UserService {
     });
 
     if (user) {
-      throw new ConflictException('User already exists');
+      throw new ConflictException('This email has already been taken');
     }
 
     const newUser = {
@@ -68,6 +68,16 @@ export class UserService {
 
     if (!user) {
       throw new NotFoundException('This user was not found');
+    }
+
+    if (updateUserDTO.email) {
+      const userByEmail = await this.userRepository.findOneBy({
+        email: updateUserDTO.email,
+      });
+
+      if (userByEmail) {
+        throw new ConflictException('This email has already been taken');
+      }
     }
 
     return this.userRepository.save({
