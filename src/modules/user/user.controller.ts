@@ -7,9 +7,10 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
-import { CreateUserDTO, UpdateUserDTO } from './user.dto';
 
+import { CreateUserDTO, QueryDTO, UpdateUserDTO } from './user.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -17,8 +18,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  index() {
-    return this.userService.index();
+  index(@Query() queryDTO: QueryDTO) {
+    return this.userService.index(queryDTO);
   }
 
   @Get(':id')

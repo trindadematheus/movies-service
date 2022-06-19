@@ -1,8 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { CreateUserDTO, UpdateUserDTO } from './user.dto';
+import { CreateUserDTO, QueryDTO, UpdateUserDTO } from './user.dto';
 import { User } from './user.entity';
 
 @Injectable()
@@ -12,8 +16,24 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  index() {
-    return this.userRepository.find();
+  index(query: QueryDTO) {
+    const order = query.order || 'desc';
+
+    const take = parseInt(query.take) || 10;
+    const page = parseInt(query.page) || 1;
+    const skip = (page - 1) * take;
+
+    return this.userRepository.find({
+      where: {
+        is_admin: false,
+        is_active: true,
+      },
+      order: {
+        name: order,
+      },
+      take: take,
+      skip: skip,
+    });
   }
 
   async show(id: string) {
@@ -26,13 +46,21 @@ export class UserService {
     return user;
   }
 
-  create(createUserDTO: CreateUserDTO) {
-    const user = this.userRepository.create({
-      ...createUserDTO,
-      is_active: true,
+  async create(createUserDTO: CreateUserDTO) {
+    const user = await this.userRepository.findOneBy({
+      email: createUserDTO.email,
     });
 
-    return this.userRepository.save(user);
+    if (user) {
+      throw new ConflictException('User already exists');
+    }
+
+    const newUser = {
+      ...createUserDTO,
+      is_active: true,
+    };
+
+    return this.userRepository.save(newUser);
   }
 
   async update(id: string, updateUserDTO: UpdateUserDTO) {
