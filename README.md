@@ -6,7 +6,7 @@
 ### Geral
 - [x] Variaveis de Ambiente
 - [x] Validação de dados recebidos
-- [ ] Docker
+- [x] Docker
 - [ ] Testes
 - [ ] Migrations
 - [ ] Swagger
