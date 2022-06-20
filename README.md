@@ -1,23 +1,23 @@
-Autênticação
-[x] Login com JWT
-[x] Proteção de rotas (Guards)
+## Movies
+> API que o site [IMDb](https://www.imdb.com/) irá consultar para exibir seu conteúdo
 
-Usuários
-[x] Cadastro;
-[x] Edição;
-[x] Exclusão lógica;
-[x] Listagem páginada e ordenada (Somente por administradores);
-[x] Listagem de usuários não administradores ativos (Somente por administradores);
+### Autênticação
+- [x] Login com JWT
+- [x] Proteção de rotas (Guards)
 
-Elenco
-[ ] CRUD (Somente por administradores);
+### Usuários
+- [x] Cadastro;
+- [x] Edição;
+- [x] Exclusão lógica;
+- [x] Listagem páginada e ordenada de usuários não administradores ativos (Somente por administradores);
 
-Gêneros de Filme
-[ ] CRUD (Somente por administradores);
+### Elenco
+- [ ] CRUD (Somente por administradores);
 
-Filmes
-[ ] Cadastro (Somente por administradores);
-[ ] Edição (Somente por administradores);
-[ ] Listagem
-[ ] Filtros por: diretor, nome, gênero e/ou atores;
-[ ] Registros paginados e ordem alfabética;
+### Gêneros de Filme
+- [ ] CRUD (Somente por administradores);
+
+### Filmes
+- [ ] Cadastro (Somente por administradores);
+- [ ] Edição (Somente por administradores);
+- [ ] Listagem com páginação, ordernação e filtros por: diretor, nome, gênero e/ou atores;
