@@ -1,6 +1,16 @@
 ## Movies
 > API que o site [IMDb](https://www.imdb.com/) irá consultar para exibir seu conteúdo
 
+## Features
+
+### Geral
+- [x] Variaveis de Ambiente
+- [x] Validação de dados recebidos
+- [ ] Docker
+- [ ] Testes
+- [ ] Migrations
+- [ ] Swagger
+
 ### Autênticação
 - [x] Login com JWT
 - [x] Proteção de rotas (Guards)
