@@ -1,4 +1,4 @@
 export const jwtConfig = {
   secret: process.env.JWT_SECRET,
-  signOptions: { expiresIn: '60s' },
+  signOptions: { expiresIn: '900s' },
 };

@@ -4,10 +4,10 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
-import { LocalStrategy } from './local.strategy';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtStrategy } from '../../shared/strategies/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { jwtConfig } from 'src/config/jwt';
+import { LocalStrategy } from 'src/shared/strategies/local.strategy';
 
 @Module({
   imports: [UserModule, PassportModule, JwtModule.register(jwtConfig)],

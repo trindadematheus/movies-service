@@ -1,6 +1,6 @@
 Autênticação
 [x] Login com JWT
-[ ] Proteção de rotas
+[x] Proteção de rotas (Guards)
 
 Usuários
 [x] Cadastro;
