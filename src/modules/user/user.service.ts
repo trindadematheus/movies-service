@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { hash } from 'bcrypt';
 
 import { CreateUserDTO, QueryDTO, UpdateUserDTO } from './user.dto';
 import { User } from './user.entity';
@@ -65,8 +66,11 @@ export class UserService {
       throw new ConflictException('This email has already been taken');
     }
 
+    const hashedPassword = await hash(createUserDTO.password, 10);
+
     const newUser = {
       ...createUserDTO,
+      password: hashedPassword,
       is_active: true,
     };
 

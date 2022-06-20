@@ -1,5 +1,5 @@
 Autênticação
-[ ] Login com JWT
+[x] Login com JWT
 [ ] Proteção de rotas
 
 Usuários
